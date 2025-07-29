@@ -18,7 +18,7 @@ export class AuthService {
     }
 
     signUp(name: string,role : string ,password: string,): string {
-        const newUser : UserDTO = {name , role ,password }
+        const newUser : UserDTO = {name , role ,password :  }
         return this.usersService.addUser(newUser);
     }
 }
