@@ -14,12 +14,12 @@ export class AuthService {
             return { message: 'Incorrect username or password.' }
         }
         const payload = { name: user.name, role: user.role };
-        const token = this.jwtService.sign(payload)
+        const token = await this.jwtService.signAsync(payload)
         return { message: 'You have successfully logged in.', token }
     }
 
-    async signUp(name: string,role : string ,password: string,): Promise<string> {
-        const newUser : UserDTO = {name , role ,password : await bcrypt.hash(password, 10) }
+    async signUp(name: string, role: string, password: string,): Promise<string> {
+        const newUser: UserDTO = { name, role, password: await bcrypt.hash(password, 10) }
         return this.usersService.addUser(newUser);
     }
 }
