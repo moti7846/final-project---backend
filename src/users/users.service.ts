@@ -5,7 +5,7 @@ import { UserDTO } from 'src/DTO/user.dto';
 export class UsersService {
     users: UserDTO[] = []
     constructor() {
-        this.users.push({ name: "moti", role: "user", password: '1234' })
+        this.users.push({ name: "moti", role: "user", password: '$2b$10$lATy/iyTqAlReLkKxN045usaLUIvTfBD358byrYZk1bhOATDvW3je' })
     }
 
     getAllUsers(): UserDTO[] {

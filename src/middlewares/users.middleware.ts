@@ -6,16 +6,14 @@ import { Request, Response, NextFunction } from 'express';
 export class UsersMiddleware implements NestMiddleware {
   constructor(private jwtService: JwtService) { }
   use(req: Request, res: Response, next: NextFunction) {
-    let token = req.header('set-cookie')
     try {
-      const decoded = this.jwtService.verify('')
-      console.log({ decoded });
+      const token = req.header('cookie');
+      const decoded = this.jwtService.verify(token? token : '')
+      req.headers.decoded = decoded
       next();
     }
-    catch (err){
-      if(token)
-        console.log('________test');
-      res.json({token : req.header('set-cookie')}) 
+    catch (err) {
+      return res.json({ err })
     }
 
   }
